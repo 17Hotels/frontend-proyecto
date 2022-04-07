@@ -1,34 +1,90 @@
 <div class="row">
   <img class="img-fluid" src="/assets/hotel.jpg" alt="" />
 </div>
-<div class="container mt-3">
+<form
+  class="container mt-3"
+  #formulario="ngForm"
+  (ngSubmit)="consultarHoteles(formulario.value)"
+>
   <div class="row g-1">
-    <div class="form-floating col-sm-4">
-      <input
-        type="text"
-        class="form-control"
-        id="destino"
-        placeholder="Destino"
-      />
-      <label for="destino">Destino</label>
+    <div class="ng-autocomplete form-floating col-4">
+      <ng-autocomplete
+        [data]="destinos"
+        [itemTemplate]="itemTemplate"
+        [notFoundTemplate]="notFoundTemplate"
+        placeholder="Introduce un destino"
+        name="destino"
+        required="true"
+        [(ngModel)]="destino.destino"
+        #lugar="ngModel"
+      >
+      </ng-autocomplete>
+
+      <ng-template #itemTemplate let-item>
+        <a [innerHTML]="item"></a>
+      </ng-template>
+
+      <ng-template #notFoundTemplate>
+        <i>Destino no disponible</i>
+      </ng-template>
     </div>
-    <div class="form-floating col-sm">
+    <div class="form-floating col-3">
       <input
         type="date"
         class="form-control"
         placeholder="Check-in"
-        id="check-in"
+        id="check_in"
+        name="check_in"
+        required="true"
+        [(ngModel)]="destino.check_in"
+        #check_in="ngModel"
       />
-      <label for="check-in">Check-In</label>
+      <label for="check_in">Check-In</label>
     </div>
-    <div class="form-floating col-sm">
+    <div class="form-floating col-3">
       <input
         type="date"
         class="form-control"
         placeholder="Check-out"
-        id="check-out"
+        id="check_out"
+        name="check_out"
+        required="true"
+        [(ngModel)]="destino.check_out"
+        #check_out="ngModel"
       />
-      <label for="check-out">Check-Out</label>
+      <label for="check_out">Check-Out</label>
+    </div>
+    <div class="col-2 text-center">
+      <button
+        type="submit"
+        [disabled]="!formulario.valid"
+        class="btn btn-primary"
+      >
+        Buscar Hoteles
+      </button>
+    </div>
+  </div>
+</form>
+
+<div class="row mt-2">
+  <div class="col-4"></div>
+  <div class="col-4">
+    <div *ngIf="check_out.invalid && (check_out.dirty || check_out.touched)">
+      <div *ngIf="check_out.errors?.['required']" class="alert alert-danger">
+        La fecha del Check-Out es requerida
+      </div>
+    </div>
+
+    <div *ngIf="check_in.invalid && (check_in.dirty || check_in.touched)">
+      <div *ngIf="check_in.errors?.['required']" class="alert alert-danger">
+        La fecha del Check-In es requerida
+      </div>
+    </div>
+
+    <div *ngIf="lugar.invalid && (lugar.dirty || lugar.touched)">
+      <div *ngIf="lugar.errors?.['required']" class="alert alert-danger">
+        El lugar de destino es requerido
+      </div>
     </div>
   </div>
 </div>

@@ -20,4 +20,12 @@ export class HotelesService {
       this.http.get<string[]>('http://localhost:9090/hoteles/destinos')
     );
   }
+
+  async getHotelesPorCiudad(ciudad: string) {
+    return lastValueFrom(
+      this.http.get<RespuestaHotel[]>(
+        `http://localhost:9090/hoteles/ciudad/${ciudad}`
+      )
+    );
+  }
 }
