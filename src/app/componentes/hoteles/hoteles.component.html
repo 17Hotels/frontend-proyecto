@@ -26,15 +26,15 @@
         <i>{{ hotel.direccion }}</i>
       </a>
 
-      <!-- Características del Hotel -->
+      <!-- Características del Hotel-->
       <div class="row">
-        <div class="col-4">
+        <div class="col-6 col-xl-4">
           <span class="material-icons"> wifi </span>
           <span [ngClass]="{ noDisponible: !hotel.wifi }" class="align-top">
             WiFi
           </span>
         </div>
-        <div class="col-4">
+        <div class="col-6 col-xl-4">
           <span class="material-icons"> ac_unit </span>
           <span
             [ngClass]="{ noDisponible: !hotel.aireAcondicionado }"
@@ -43,22 +43,20 @@
             Aire Acondicionado
           </span>
         </div>
-        <div class="col-4">
+        <div class="col-6 col-xl-4">
           <span class="material-icons"> local_parking </span>
           <span [ngClass]="{ noDisponible: !hotel.parking }" class="align-top">
             Parking Disponible
           </span>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="col-4">
+        <div class="col-6 col-xl-4">
           <span class="material-icons"> fitness_center </span>
           <span class="align-top" [ngClass]="{ noDisponible: !hotel.gimnasio }">
             Gimnasio
           </span>
         </div>
-        <div class="col-4">
+        <div class="col-6 col-xl-4">
           <span class="material-icons"> whatshot </span>
           <span
             [ngClass]="{ noDisponible: !hotel.calefaccion }"
@@ -67,16 +65,14 @@
             Calefacción
           </span>
         </div>
-        <div class="col-4">
+        <div class="col-6 col-xl-4">
           <span class="material-icons"> pets </span>
           <span [ngClass]="{ noDisponible: !hotel.mascotas }" class="align-top">
             Mascotas Permitidas
           </span>
         </div>
-      </div>
 
-      <div class="row">
-        <div class="col-4">
+        <div class="col-6 col-xl-4">
           <span class="material-icons"> accessible </span>
           <span
             [ngClass]="{ noDisponible: !hotel.accesibilidad }"
