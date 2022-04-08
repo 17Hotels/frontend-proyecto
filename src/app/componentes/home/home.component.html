@@ -1,34 +1,38 @@
 <div class="row">
   <img class="img-fluid" src="/assets/hotel.jpg" alt="" />
 </div>
+
 <form
-  class="container mt-3"
+  class="mt-3 container"
   #formulario="ngForm"
   (ngSubmit)="consultarHoteles(formulario.value)"
 >
-  <div class="row g-1">
-    <div class="ng-autocomplete form-floating col-4">
-      <ng-autocomplete
-        [data]="destinos"
-        [itemTemplate]="itemTemplate"
-        [notFoundTemplate]="notFoundTemplate"
-        placeholder="Introduce un destino"
-        name="destino"
-        required="true"
-        [(ngModel)]="destino.destino"
-        #lugar="ngModel"
-      >
-      </ng-autocomplete>
+  <div class="row">
+    <div class="form-floating col-12 col-lg-4 mb-2">
+      <div class="ng-autocomplete">
+        <ng-autocomplete
+          [data]="destinos"
+          [itemTemplate]="itemTemplate"
+          [notFoundTemplate]="notFoundTemplate"
+          placeholder="Introduce un destino"
+          name="destino"
+          required="true"
+          [(ngModel)]="destino.destino"
+          #lugar="ngModel"
+        >
+        </ng-autocomplete>
 
-      <ng-template #itemTemplate let-item>
-        <a [innerHTML]="item"></a>
-      </ng-template>
+        <ng-template #itemTemplate let-item>
+          <a [innerHTML]="item"></a>
+        </ng-template>
 
-      <ng-template #notFoundTemplate>
-        <i>Destino no disponible</i>
-      </ng-template>
+        <ng-template #notFoundTemplate>
+          <i>Destino no disponible</i>
+        </ng-template>
+      </div>
     </div>
-    <div class="form-floating col-3">
+
+    <div class="form-floating col-12 col-lg-3 mb-2">
       <input
         type="date"
         class="form-control"
@@ -41,7 +45,8 @@
       />
       <label for="check_in">Check-In</label>
     </div>
-    <div class="form-floating col-3">
+
+    <div class="form-floating col-12 col-lg-3 mb-2">
       <input
         type="date"
         class="form-control"
@@ -54,7 +59,8 @@
       />
       <label for="check_out">Check-Out</label>
     </div>
-    <div class="col-2 text-center">
+
+    <div class="text-center col-12 col-lg-2">
       <button
         type="submit"
         [disabled]="!formulario.valid"
@@ -67,8 +73,8 @@
 </form>
 
 <div class="row mt-2">
-  <div class="col-4"></div>
-  <div class="col-4">
+  <div class="col-2 col-lg-4"></div>
+  <div class="col-8 col-lg-4">
     <div *ngIf="check_out.invalid && (check_out.dirty || check_out.touched)">
       <div *ngIf="check_out.errors?.['required']" class="alert alert-danger">
         La fecha del Check-Out es requerida

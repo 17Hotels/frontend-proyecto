@@ -2,3 +2,7 @@ img {
   /*height: 50em;*/
   opacity: 0.85;
 }
+
+.ng-autocomplete {
+  width: 100%;
+}
