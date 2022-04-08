@@ -72,24 +72,29 @@
   </div>
 </form>
 
-<div class="row mt-2">
-  <div class="col-2 col-lg-4"></div>
-  <div class="col-8 col-lg-4">
-    <div *ngIf="check_out.invalid && (check_out.dirty || check_out.touched)">
-      <div *ngIf="check_out.errors?.['required']" class="alert alert-danger">
-        La fecha del Check-Out es requerida
+<div class="container">
+  <div class="row">
+    <div class="col-12 col-lg-4">
+      <div *ngIf="lugar.invalid && (lugar.dirty || lugar.touched)">
+        <div *ngIf="lugar.errors?.['required']" class="alert alert-danger">
+          El lugar de destino es requerido
+        </div>
       </div>
     </div>
 
-    <div *ngIf="check_in.invalid && (check_in.dirty || check_in.touched)">
-      <div *ngIf="check_in.errors?.['required']" class="alert alert-danger">
-        La fecha del Check-In es requerida
+    <div class="col-12 col-lg-3">
+      <div *ngIf="check_in.invalid && (check_in.dirty || check_in.touched)">
+        <div *ngIf="check_in.errors?.['required']" class="alert alert-danger">
+          La fecha del Check-In es requerida
+        </div>
       </div>
     </div>
 
-    <div *ngIf="lugar.invalid && (lugar.dirty || lugar.touched)">
-      <div *ngIf="lugar.errors?.['required']" class="alert alert-danger">
-        El lugar de destino es requerido
+    <div class="col-12 col-lg-4">
+      <div *ngIf="check_out.invalid && (check_out.dirty || check_out.touched)">
+        <div *ngIf="check_out.errors?.['required']" class="alert alert-danger">
+          La fecha del Check-Out es requerida
+        </div>
       </div>
     </div>
   </div>
