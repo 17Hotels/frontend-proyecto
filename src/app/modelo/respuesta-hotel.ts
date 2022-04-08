@@ -23,4 +23,5 @@ export interface RespuestaHotel {
   horaSalida: string;
   precioParking: number;
   fotos: RespuestaFoto[];
+  precioMinimoHabitacion: number;
 }

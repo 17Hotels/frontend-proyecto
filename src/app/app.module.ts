@@ -1,4 +1,4 @@
-import { NgModule } from '@angular/core';
+import { LOCALE_ID, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -7,13 +7,23 @@ import { NavbarComponent } from './componentes/navbar/navbar.component';
 import { HomeComponent } from './componentes/home/home.component';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule } from '@angular/forms';
+import { registerLocaleData } from '@angular/common';
+import localeEs from '@angular/common/locales/es';
 
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { FooterComponent } from './componentes/footer/footer.component';
 import { HotelesComponent } from './componentes/hoteles/hoteles.component';
 
+registerLocaleData(localeEs);
+
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, HomeComponent, FooterComponent, HotelesComponent],
+  declarations: [
+    AppComponent,
+    NavbarComponent,
+    HomeComponent,
+    FooterComponent,
+    HotelesComponent,
+  ],
   imports: [
     BrowserModule,
     AppRoutingModule,
@@ -21,7 +31,7 @@ import { HotelesComponent } from './componentes/hoteles/hoteles.component';
     AutocompleteLibModule,
     FormsModule,
   ],
-  providers: [],
+  providers: [{ provide: LOCALE_ID, useValue: 'es' }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

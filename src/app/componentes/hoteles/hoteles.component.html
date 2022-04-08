@@ -3,9 +3,12 @@
     class="row border rounded align-items-center my-2"
     *ngFor="let hotel of hoteles"
   >
+    <!-- Imagenes del Hotel -->
     <div class="col-lg-3 mt-1">
       <img class="img-fluid img-responsive" [src]="hotel.fotos[0].enlace" />
     </div>
+
+    <!-- Informacion del Hotel -->
     <div class="col-lg-7 mt-1">
       <h5>{{ hotel.nombre }}</h5>
       <div class="flex-row">
@@ -16,11 +19,14 @@
           <span class="material-icons"> star_border </span>
         </span>
       </div>
-      <!-- <div id="descripcion" [innerHtml]="hotel.descripcion"></div>-->
-      <a href="https://www.google.com/maps/place/{{ hotel.direccion }}">
+      <a
+        href="https://www.google.com/maps/place/{{ hotel.direccion }}"
+        title="Ver dirección en Google Maps"
+      >
         <i>{{ hotel.direccion }}</i>
       </a>
 
+      <!-- Características del Hotel -->
       <div class="row">
         <div class="col-4">
           <span class="material-icons"> wifi </span>
@@ -81,11 +87,17 @@
         </div>
       </div>
     </div>
+
+    <!-- Precio del Hotel -->
     <div class="col-lg-2">
       <div class="d-flex">
-        <h4 class="me-1">{{ hotel.precioParking }}</h4>
+        <div class="me-1">
+          <span class="h6">Habitaciones desde </span>
+          <span class="h4">
+            {{ hotel.precioMinimoHabitacion | currency: "EUR" }}
+          </span>
+        </div>
       </div>
-      <h6 class="text-success">Envío en 3 días</h6>
       <div class="d-flex flex-row mt-4">
         <button
           class="btn btn-outline-dark mt-2 me-2"
