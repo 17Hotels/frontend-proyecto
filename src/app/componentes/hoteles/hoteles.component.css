@@ -1,0 +1,11 @@
+#descripcion {
+  text-align: justify;
+}
+
+li {
+  list-style-type: none;
+}
+
+.noDisponible {
+  text-decoration: line-through;
+}

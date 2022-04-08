@@ -1,0 +1,107 @@
+<div class="container">
+  <div
+    class="row border rounded align-items-center my-2"
+    *ngFor="let hotel of hoteles"
+  >
+    <div class="col-lg-3 mt-1">
+      <img class="img-fluid img-responsive" [src]="hotel.fotos[0].enlace" />
+    </div>
+    <div class="col-lg-7 mt-1">
+      <h5>{{ hotel.nombre }}</h5>
+      <div class="flex-row">
+        <span *ngFor="let _ of [].constructor(hotel.estrellas)">
+          <span class="material-icons"> star </span>
+        </span>
+        <span *ngFor="let _ of [].constructor(5 - hotel.estrellas)">
+          <span class="material-icons"> star_border </span>
+        </span>
+      </div>
+      <!-- <div id="descripcion" [innerHtml]="hotel.descripcion"></div>-->
+      <a href="https://www.google.com/maps/place/{{ hotel.direccion }}">
+        <i>{{ hotel.direccion }}</i>
+      </a>
+
+      <div class="row">
+        <div class="col-4">
+          <span class="material-icons"> wifi </span>
+          <span [ngClass]="{ noDisponible: !hotel.wifi }" class="align-top">
+            WiFi
+          </span>
+        </div>
+        <div class="col-4">
+          <span class="material-icons"> ac_unit </span>
+          <span
+            [ngClass]="{ noDisponible: !hotel.aireAcondicionado }"
+            class="align-top"
+          >
+            Aire Acondicionado
+          </span>
+        </div>
+        <div class="col-4">
+          <span class="material-icons"> local_parking </span>
+          <span [ngClass]="{ noDisponible: !hotel.parking }" class="align-top">
+            Parking Disponible
+          </span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-4">
+          <span class="material-icons"> fitness_center </span>
+          <span class="align-top" [ngClass]="{ noDisponible: !hotel.gimnasio }">
+            Gimnasio
+          </span>
+        </div>
+        <div class="col-4">
+          <span class="material-icons"> whatshot </span>
+          <span
+            [ngClass]="{ noDisponible: !hotel.calefaccion }"
+            class="align-top"
+          >
+            Calefacción
+          </span>
+        </div>
+        <div class="col-4">
+          <span class="material-icons"> pets </span>
+          <span [ngClass]="{ noDisponible: !hotel.mascotas }" class="align-top">
+            Mascotas Permitidas
+          </span>
+        </div>
+      </div>
+
+      <div class="row">
+        <div class="col-4">
+          <span class="material-icons"> accessible </span>
+          <span
+            [ngClass]="{ noDisponible: !hotel.accesibilidad }"
+            class="align-top"
+          >
+            Accesible
+          </span>
+        </div>
+      </div>
+    </div>
+    <div class="col-lg-2">
+      <div class="d-flex">
+        <h4 class="me-1">{{ hotel.precioParking }}</h4>
+      </div>
+      <h6 class="text-success">Envío en 3 días</h6>
+      <div class="d-flex flex-row mt-4">
+        <button
+          class="btn btn-outline-dark mt-2 me-2"
+          type="button"
+          title="Añadir al carrito"
+        >
+          <i class="bi bi-cart-plus-fill"></i>
+        </button>
+        <button
+          class="btn btn-outline-danger mt-2"
+          type="button"
+          title="Añadir a lista de deseados"
+        >
+          <i class="bi bi-heart-fill"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { Destino } from 'src/app/modelo/destino';
 import { RespuestaHotel } from 'src/app/modelo/respuesta-hotel';
 import { HotelesService } from 'src/app/servicio/hoteles.service';
@@ -9,7 +10,6 @@ import { HotelesService } from 'src/app/servicio/hoteles.service';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  hoteles!: RespuestaHotel[];
   destinos!: string[];
   destino: Destino = {
     destino: '',
@@ -17,25 +17,20 @@ export class HomeComponent implements OnInit {
     check_out: undefined,
   };
 
-  constructor(private servicio: HotelesService) {}
+  constructor(private servicio: HotelesService, private router: Router) {}
 
   async ngOnInit() {
-    this.hoteles = await this.servicio.getHoteles();
     this.destinos = await this.servicio.getDestinos();
-    console.log(this.hoteles);
     console.log(this.destinos);
   }
 
-  async consultarHoteles(formulario: Destino) {
-    let ciudad: string = this.getCiudadDeDestino(formulario.destino);
-    this.hoteles = await this.servicio.getHotelesPorCiudad(ciudad);
-    console.log(formulario);
-    console.log(formulario.check_in);
-    console.log(formulario.check_out);
-    console.log(this.hoteles);
-  }
-
-  getCiudadDeDestino(destino: string) {
-    return destino.substring(0, destino.indexOf(','));
+  verHotelesCiudad(formulario: Destino) {
+    this.router.navigate(['/hoteles'], {
+      queryParams: {
+        destino: formulario.destino,
+        check_in: formulario.check_in,
+        check_out: formulario.check_out,
+      },
+    });
   }
 }

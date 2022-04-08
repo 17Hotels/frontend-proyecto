@@ -10,9 +10,10 @@ import { FormsModule } from '@angular/forms';
 
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { FooterComponent } from './componentes/footer/footer.component';
+import { HotelesComponent } from './componentes/hoteles/hoteles.component';
 
 @NgModule({
-  declarations: [AppComponent, NavbarComponent, HomeComponent, FooterComponent],
+  declarations: [AppComponent, NavbarComponent, HomeComponent, FooterComponent, HotelesComponent],
   imports: [
     BrowserModule,
     AppRoutingModule,

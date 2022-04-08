@@ -1,3 +1,5 @@
+import { RespuestaFoto } from './respuesta-foto';
+
 export interface RespuestaHotel {
   id: number;
   nombre: string;
@@ -20,4 +22,5 @@ export interface RespuestaHotel {
   horaEntrada: string;
   horaSalida: string;
   precioParking: number;
+  fotos: RespuestaFoto[];
 }
