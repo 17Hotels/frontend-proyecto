@@ -13,6 +13,7 @@ import localeEs from '@angular/common/locales/es';
 import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { FooterComponent } from './componentes/footer/footer.component';
 import { HotelesComponent } from './componentes/hoteles/hoteles.component';
+import { SeleccionDestinoComponent } from './componentes/seleccion-destino/seleccion-destino.component';
 
 registerLocaleData(localeEs);
 
@@ -23,6 +24,7 @@ registerLocaleData(localeEs);
     HomeComponent,
     FooterComponent,
     HotelesComponent,
+    SeleccionDestinoComponent,
   ],
   imports: [
     BrowserModule,

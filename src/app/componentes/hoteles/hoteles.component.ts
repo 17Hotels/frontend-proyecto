@@ -15,6 +15,7 @@ export class HotelesComponent implements OnInit {
   ciudad!: string;
   check_in!: string;
   check_out!: string;
+  hotel!: RespuestaHotel;
 
   constructor(private servicio: HotelesService, private ruta: ActivatedRoute) {}
 

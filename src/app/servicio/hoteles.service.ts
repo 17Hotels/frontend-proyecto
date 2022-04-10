@@ -16,6 +16,12 @@ export class HotelesService {
     );
   }
 
+  async getHotel(id: number) {
+    return lastValueFrom(
+      this.http.get<RespuestaHotel>(`http://localhost:9090/hoteles/${id}`)
+    );
+  }
+
   async getDestinos() {
     return lastValueFrom(
       this.http.get<string[]>('http://localhost:9090/hoteles/destinos')
