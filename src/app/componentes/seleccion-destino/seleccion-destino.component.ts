@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Destino } from 'src/app/modelo/destino';
 import { HotelesService } from 'src/app/servicio/hoteles.service';
 
@@ -16,11 +16,21 @@ export class SeleccionDestinoComponent implements OnInit {
     check_out: undefined,
   };
 
-  constructor(private servicio: HotelesService, private router: Router) {}
+  constructor(
+    private servicio: HotelesService,
+    private router: Router,
+    private ruta: ActivatedRoute
+  ) {
+    this.router.routeReuseStrategy.shouldReuseRoute = () => false;
+  }
 
   async ngOnInit() {
     this.destinos = await this.servicio.getDestinos();
-    console.log(this.destinos);
+    this.ruta.queryParams.subscribe((params) => {
+      this.destino.destino = params['destino'];
+      this.destino.check_in = params['check_in'];
+      this.destino.check_out = params['check_out'];
+    });
   }
 
   verHotelesCiudad(formulario: Destino) {
