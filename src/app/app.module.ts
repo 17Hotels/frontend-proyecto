@@ -14,6 +14,7 @@ import { AutocompleteLibModule } from 'angular-ng-autocomplete';
 import { FooterComponent } from './componentes/footer/footer.component';
 import { HotelesComponent } from './componentes/hoteles/hoteles.component';
 import { SeleccionDestinoComponent } from './componentes/seleccion-destino/seleccion-destino.component';
+import { HabitacionesComponent } from './componentes/habitaciones/habitaciones.component';
 
 registerLocaleData(localeEs);
 
@@ -25,6 +26,7 @@ registerLocaleData(localeEs);
     FooterComponent,
     HotelesComponent,
     SeleccionDestinoComponent,
+    HabitacionesComponent,
   ],
   imports: [
     BrowserModule,

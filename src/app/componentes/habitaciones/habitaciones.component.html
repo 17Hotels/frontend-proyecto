@@ -1,0 +1,80 @@
+<div class="container mt-2">
+  <div class="row">
+    <div class="col-12 col-lg-2"></div>
+    <div
+      id="carouselExampleControls"
+      data-bs-ride="carousel"
+      class="carousel slide col-12 col-lg-8"
+    >
+      <div class="carousel-inner">
+        <div class="carousel-item active">
+          <img [src]="hotel?.fotos?.[0]?.enlace" class="" alt="..." />
+        </div>
+        <div class="carousel-item" *ngFor="let foto of hotel?.fotos | slice: 1">
+          <img [src]="foto?.enlace" class="" alt="..." />
+        </div>
+      </div>
+      <button
+        class="carousel-control-prev"
+        type="button"
+        data-bs-target="#carouselExampleControls"
+        data-bs-slide="prev"
+      >
+        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Previous</span>
+      </button>
+      <button
+        class="carousel-control-next"
+        type="button"
+        data-bs-target="#carouselExampleControls"
+        data-bs-slide="next"
+      >
+        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+        <span class="visually-hidden">Next</span>
+      </button>
+    </div>
+  </div>
+
+  <div class="mt-2">
+    <p [innerHtml]="hotel?.descripcion" id="descripcion"></p>
+  </div>
+
+  <table class="table mt-3" id="habitaciones">
+    <thead>
+      <tr>
+        <th scope="col">Tipo de Habitación</th>
+        <th scope="col">Capacidad Máxima</th>
+        <th scope="col">Desayuno</th>
+        <th></th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let habitacion of habitaciones">
+        <th>{{ habitacion.nombre }}</th>
+        <td>
+          <span
+            class="material-icons"
+            *ngFor="let _ of [].constructor(habitacion.capacidad)"
+          >
+            person_outline
+          </span>
+        </td>
+        <td>
+          <div *ngIf="habitacion.precioDesayuno == null">
+            <i>Desayuno no disponible</i>
+          </div>
+          <div *ngIf="habitacion.precioDesayuno != null">
+            <span class="material-icons"> restaurant </span>
+            <span class="align-top">
+              Desayuno disponible por
+              {{ habitacion.precioDesayuno | currency: "EUR" }}
+            </span>
+          </div>
+        </td>
+        <td>
+          <button class="btn btn-primary">Reservar</button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>

@@ -1,0 +1,15 @@
+.carousel {
+  background-color: black;
+}
+.carousel-inner {
+  height: 600px;
+}
+.carousel-item {
+  text-align: center;
+}
+.carousel-inner img {
+  display: inline-block !important;
+}
+#descripcion {
+  text-align: justify;
+}

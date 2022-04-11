@@ -2,6 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
 import { RespuestaFoto } from '../modelo/respuesta-foto';
+import { RespuesHabitacion } from '../modelo/respuesta-habitacion';
 import { RespuestaHotel } from '../modelo/respuesta-hotel';
 
 @Injectable({
@@ -40,6 +41,14 @@ export class HotelesService {
     return lastValueFrom(
       this.http.get<RespuestaFoto[]>(
         `http://localhost:9090/hoteles/${id}/fotos`
+      )
+    );
+  }
+
+  async getHabitacionesHotel(idHotel: number) {
+    return lastValueFrom(
+      this.http.get<RespuesHabitacion[]>(
+        `http://localhost:9090/hoteles/${idHotel}/habitaciones`
       )
     );
   }
