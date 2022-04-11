@@ -1,5 +1,15 @@
 <div class="container mt-2">
-  <div class="row">
+  <div class="text-center" *ngIf="hotel != undefined">
+    <span class="h2">{{ hotel.nombre }}</span>
+    <span *ngFor="let _ of [].constructor(hotel.estrellas)">
+      <span class="material-icons"> star </span>
+    </span>
+    <span *ngFor="let _ of [].constructor(5 - hotel.estrellas)">
+      <span class="material-icons"> star_border </span>
+    </span>
+  </div>
+
+  <div class="row mt-2">
     <div class="col-12 col-lg-2"></div>
     <div
       id="carouselExampleControls"
@@ -44,7 +54,11 @@
       <tr>
         <th scope="col">Tipo de Habitación</th>
         <th scope="col">Capacidad Máxima</th>
-        <th scope="col">Desayuno</th>
+        <th scope="col">Precio por noche</th>
+        <th scope="col">
+          <span class="material-icons"> local_cafe </span>
+          <span class="align-top"> Desayuno</span>
+        </th>
         <th></th>
       </tr>
     </thead>
@@ -60,15 +74,24 @@
           </span>
         </td>
         <td>
+          <div class="h4">{{ habitacion.precioNoche | currency: "EUR" }}</div>
+        </td>
+        <td>
           <div *ngIf="habitacion.precioDesayuno == null">
-            <i>Desayuno no disponible</i>
+            <i>No disponible</i>
           </div>
           <div *ngIf="habitacion.precioDesayuno != null">
-            <span class="material-icons"> restaurant </span>
-            <span class="align-top">
-              Desayuno disponible por
-              {{ habitacion.precioDesayuno | currency: "EUR" }}
-            </span>
+            <div class="form-check">
+              <input
+                class="form-check-input"
+                type="checkbox"
+                value=""
+                id="desayuno"
+              />
+              <label class="form-check-label" for="desayuno">
+                {{ habitacion.precioDesayuno | currency: "EUR" }}
+              </label>
+            </div>
           </div>
         </td>
         <td>
