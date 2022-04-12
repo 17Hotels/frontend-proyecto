@@ -13,3 +13,6 @@
 #descripcion {
   text-align: justify;
 }
+li {
+  list-style-type: none;
+}

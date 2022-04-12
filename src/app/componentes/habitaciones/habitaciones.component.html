@@ -1,6 +1,6 @@
 <div class="container mt-2">
   <div class="text-center" *ngIf="hotel != undefined">
-    <span class="h2">{{ hotel.nombre }}</span>
+    <span class="h2">{{ hotel.nombre }} </span>
     <span *ngFor="let _ of [].constructor(hotel.estrellas)">
       <span class="material-icons"> star </span>
     </span>
@@ -81,17 +81,9 @@
             <i>No disponible</i>
           </div>
           <div *ngIf="habitacion.precioDesayuno != null">
-            <div class="form-check">
-              <input
-                class="form-check-input"
-                type="checkbox"
-                value=""
-                id="desayuno"
-              />
-              <label class="form-check-label" for="desayuno">
-                {{ habitacion.precioDesayuno | currency: "EUR" }}
-              </label>
-            </div>
+            <label class="form-check-label" for="desayuno">
+              Disponible por {{ habitacion.precioDesayuno | currency: "EUR" }}
+            </label>
           </div>
         </td>
         <td>
@@ -100,4 +92,53 @@
       </tr>
     </tbody>
   </table>
+
+  <div class="row mt-2">
+    <h3>Información Importante:</h3>
+    <div class="row">
+      <div class="col-12 col-lg-6">
+        <h4>Horario:</h4>
+        <ul>
+          <li>
+            <span class="material-icons align-top"> schedule </span>
+            Check-In: {{ hotel?.horaEntrada }}
+          </li>
+          <li>
+            <span class="material-icons align-top"> schedule </span>
+            Check-Out: {{ hotel?.horaSalida }}
+          </li>
+        </ul>
+      </div>
+      <div class="col-12 col-lg-6">
+        <h4>Servicios Disponibles:</h4>
+        <ul>
+          <li *ngIf="hotel?.wifi">
+            <span class="material-icons align-top"> wifi </span> WiFi
+          </li>
+          <li *ngIf="hotel?.aireAcondicionado">
+            <span class="material-icons align-top"> ac_unit </span>
+            Aire Acondicionado
+          </li>
+          <li *ngIf="hotel?.parking">
+            <span class="material-icons align-top"> local_parking </span>
+            Parking
+          </li>
+          <li *ngIf="hotel?.gimnasio">
+            <span class="material-icons align-top"> fitness_center </span>
+            Gimnasio
+          </li>
+          <li *ngIf="hotel?.calefaccion">
+            <span class="material-icons align-top"> whatshot </span> Calefacción
+          </li>
+          <li *ngIf="hotel?.mascotas">
+            <span class="material-icons align-top"> pets </span>
+            Mascotas permitidas
+          </li>
+          <li *ngIf="hotel?.accesibilidad">
+            <span class="material-icons align-top"> accessible </span> Accesible
+          </li>
+        </ul>
+      </div>
+    </div>
+  </div>
 </div>
