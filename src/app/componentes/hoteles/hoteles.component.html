@@ -14,11 +14,11 @@
     <div class="col-lg-7 mt-1">
       <a
         title="Ver las habitaciones del hotel"
-        [routerLink]="['/hoteles', hotel.id, 'habitaciones']"
+        (click)="verHabitaciones(hotel.id)"
       >
         <h5>{{ hotel.nombre }}</h5>
       </a>
-      <div class="flex-row">
+      <div class="flex-row" *ngIf="hotel?.estrellas">
         <span *ngFor="let _ of [].constructor(hotel.estrellas)">
           <span class="material-icons"> star </span>
         </span>

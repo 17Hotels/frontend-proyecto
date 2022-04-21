@@ -87,7 +87,12 @@
           </div>
         </td>
         <td>
-          <button class="btn btn-primary">Reservar</button>
+          <a
+            (click)="reservarHabitacion(habitacion.id)"
+            class="btn btn-primary"
+          >
+            Reservar
+          </a>
         </td>
       </tr>
     </tbody>

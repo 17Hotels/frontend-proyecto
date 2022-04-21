@@ -1,5 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Destino } from 'src/app/modelo/destino';
 import { RespuestaFoto } from 'src/app/modelo/respuesta-foto';
 import { RespuestaHotel } from 'src/app/modelo/respuesta-hotel';
@@ -17,7 +17,11 @@ export class HotelesComponent implements OnInit {
   check_out!: string;
   hotel!: RespuestaHotel;
 
-  constructor(private servicio: HotelesService, private ruta: ActivatedRoute) {}
+  constructor(
+    private servicio: HotelesService,
+    private ruta: ActivatedRoute,
+    private router: Router
+  ) {}
 
   async ngOnInit() {
     this.ruta.queryParams.subscribe((params) => {
@@ -35,5 +39,14 @@ export class HotelesComponent implements OnInit {
 
   getCiudadDeDestino(destino: string) {
     return destino.substring(0, destino.indexOf(','));
+  }
+
+  verHabitaciones(idHotel: number) {
+    this.router.navigate([`/hoteles/${idHotel}/habitaciones`], {
+      queryParams: {
+        check_in: this.check_in,
+        check_out: this.check_out,
+      },
+    });
   }
 }

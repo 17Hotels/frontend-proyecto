@@ -52,4 +52,12 @@ export class HotelesService {
       )
     );
   }
+
+  async getHabitacion(idHabitacion: number) {
+    return lastValueFrom(
+      this.http.get<RespuesHabitacion>(
+        `http://localhost:9090/habitaciones/${idHabitacion}`
+      )
+    );
+  }
 }

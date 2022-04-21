@@ -9,3 +9,9 @@ li {
 .noDisponible {
   text-decoration: line-through;
 }
+
+a h5 {
+  color: #0a58d4;
+  text-decoration: underline;
+  cursor: pointer;
+}

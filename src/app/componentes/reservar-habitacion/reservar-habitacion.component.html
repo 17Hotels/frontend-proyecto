@@ -1,0 +1,108 @@
+<div class="container" *ngIf="hotel">
+  <div class="row border rounded align-items-center my-2">
+    <!-- Imagenes del Hotel -->
+    <div class="col-lg-3 mt-1">
+      <img class="img-fluid img-responsive" [src]="hotel.fotos[0].enlace" />
+    </div>
+
+    <!-- Informacion del Hotel -->
+    <div class="col-lg-7 mt-1">
+      <h5>{{ hotel.nombre }}</h5>
+      <div class="flex-row" *ngIf="hotel.estrellas">
+        <span *ngFor="let _ of [].constructor(hotel.estrellas)">
+          <span class="material-icons"> star </span>
+        </span>
+        <span *ngFor="let _ of [].constructor(5 - hotel.estrellas)">
+          <span class="material-icons"> star_border </span>
+        </span>
+      </div>
+      <a
+        href="https://www.google.com/maps/place/{{ hotel.direccion }}"
+        title="Ver dirección en Google Maps"
+      >
+        <i>{{ hotel.direccion }}</i>
+      </a>
+    </div>
+
+    <!-- Precio del Hotel -->
+    <div class="col-lg-2">
+      <div class="d-flex">
+        <div class="me-1">
+          <span class="h6">Habitaciones desde </span>
+          <span class="h4">
+            {{ hotel.precioMinimoHabitacion | currency: "EUR" }}
+          </span>
+        </div>
+      </div>
+      <div class="d-flex flex-row mt-4">
+        <button
+          class="btn btn-outline-dark mt-2 me-2"
+          type="button"
+          title="Añadir al carrito"
+        >
+          <i class="bi bi-cart-plus-fill"></i>
+        </button>
+        <button
+          class="btn btn-outline-danger mt-2"
+          type="button"
+          title="Añadir a lista de deseados"
+        >
+          <i class="bi bi-heart-fill"></i>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- -->
+
+  <div class="card">
+    <div class="card-header">
+      <div class="row">
+        <div class="col-lg-3 mt-1">
+          <img class="img-fluid img-responsive" [src]="hotel.fotos[0].enlace" />
+        </div>
+        <!-- Informacion del Hotel -->
+        <div class="col-lg-7 mt-1">
+          <div class="flex-row">
+            <span class="h4 align-middle"> {{ hotel.nombre }} </span>
+
+            <span *ngFor="let _ of [].constructor(hotel.estrellas)">
+              <span class="material-icons align-middle"> star </span>
+            </span>
+            <span *ngFor="let _ of [].constructor(5 - hotel.estrellas)">
+              <span class="material-icons align-middle"> star_border </span>
+            </span>
+          </div>
+          <a
+            href="https://www.google.com/maps/place/{{ hotel.direccion }}"
+            title="Ver dirección en Google Maps"
+          >
+            <i>{{ hotel.direccion }}</i>
+          </a>
+        </div>
+      </div>
+    </div>
+    <div class="card-body">
+      <h3 class="card-title">Detalles</h3>
+      <h4>Fechas</h4>
+      <div>{{ check_in | date }} - {{ check_out | date }}</div>
+      <h4>Nº Huéspedes</h4>
+      <div class="col-2">
+        <input
+          type="number"
+          name="numHuespedes"
+          id="numHuespedes"
+          min="1"
+          max="9"
+          [defaultValue]="1"
+          class="form-control"
+        />
+      </div>
+
+      <p class="card-text">
+        With supporting text below as a natural lead-in to additional content.
+      </p>
+      <a href="#" class="btn btn-primary">Reservar</a>
+    </div>
+  </div>
+</div>

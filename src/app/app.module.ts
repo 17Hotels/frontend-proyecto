@@ -15,6 +15,7 @@ import { FooterComponent } from './componentes/footer/footer.component';
 import { HotelesComponent } from './componentes/hoteles/hoteles.component';
 import { SeleccionDestinoComponent } from './componentes/seleccion-destino/seleccion-destino.component';
 import { HabitacionesComponent } from './componentes/habitaciones/habitaciones.component';
+import { ReservarHabitacionComponent } from './componentes/reservar-habitacion/reservar-habitacion.component';
 
 registerLocaleData(localeEs);
 
@@ -27,6 +28,7 @@ registerLocaleData(localeEs);
     HotelesComponent,
     SeleccionDestinoComponent,
     HabitacionesComponent,
+    ReservarHabitacionComponent,
   ],
   imports: [
     BrowserModule,
