@@ -1,7 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { NuevaReserva } from 'src/app/modelo/nueva-reserva';
 import { RespuesHabitacion } from 'src/app/modelo/respuesta-habitacion';
 import { RespuestaHotel } from 'src/app/modelo/respuesta-hotel';
+import { RespuestaReserva } from 'src/app/modelo/respuesta-reserva';
 import { HotelesService } from 'src/app/servicio/hoteles.service';
 
 @Component({
@@ -16,6 +18,10 @@ export class ReservarHabitacionComponent implements OnInit {
   check_in!: string;
   check_out!: string;
   numeroDeNoches!: number;
+
+  reserva!: RespuestaReserva;
+  numHuespedes: number = 1;
+  desayuno: boolean = false;
 
   constructor(
     private servicio: HotelesService,
@@ -44,5 +50,21 @@ export class ReservarHabitacionComponent implements OnInit {
     const fechaFin = new Date(this.check_out);
     const diferencia = fechaFin.getTime() - fechaInicio.getTime();
     this.numeroDeNoches = Math.round(diferencia / (1000 * 60 * 60 * 24));
+  }
+
+  async confirmarReserva() {
+    let nuevaReserva: NuevaReserva = {
+      idHabitacion: this.idHabitacion,
+      idUsuario: 1,
+      numeroHuespedes: this.numHuespedes,
+      fechaEntrada: new Date(this.check_in),
+      fechaSalida: new Date(this.check_out),
+      desayuno: this.desayuno,
+    };
+
+    this.reserva = await this.servicio.nuevaReserva(nuevaReserva);
+    console.log(this.reserva);
+
+    this.router.navigate([`/reserva-confirmada/${this.reserva.id}`], {});
   }
 }

@@ -1,9 +1,11 @@
 import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { lastValueFrom } from 'rxjs';
+import { NuevaReserva } from '../modelo/nueva-reserva';
 import { RespuestaFoto } from '../modelo/respuesta-foto';
 import { RespuesHabitacion } from '../modelo/respuesta-habitacion';
 import { RespuestaHotel } from '../modelo/respuesta-hotel';
+import { RespuestaReserva } from '../modelo/respuesta-reserva';
 
 @Injectable({
   providedIn: 'root',
@@ -57,6 +59,15 @@ export class HotelesService {
     return lastValueFrom(
       this.http.get<RespuesHabitacion>(
         `http://localhost:9090/habitaciones/${idHabitacion}`
+      )
+    );
+  }
+
+  async nuevaReserva(reserva: NuevaReserva) {
+    return lastValueFrom(
+      this.http.post<RespuestaReserva>(
+        `http://localhost:9090/reservas`,
+        reserva
       )
     );
   }
