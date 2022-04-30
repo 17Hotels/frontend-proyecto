@@ -27,7 +27,7 @@
       </div>
     </div>
     <div class="card-body">
-      <h3 class="card-title">Detalles de l reserva</h3>
+      <h3 class="card-title">Detalles de la reserva</h3>
       <h4>Fechas</h4>
       <div>{{ check_in | date }} - {{ check_out | date }}</div>
       <h4>Nº Huéspedes</h4>
@@ -43,14 +43,6 @@
         />
       </div>
 
-      <h4>Precio total:</h4>
-      <div>
-        {{ habitacion.precioNoche }}€ x {{ numeroDeNoches }} noches =
-        <span class="fw-bold">
-          {{ numeroDeNoches * habitacion.precioNoche }}€
-        </span>
-      </div>
-
       <div *ngIf="habitacion.precioDesayuno != null">
         <h4>Opciones para añadir a tu reserva:</h4>
         <div class="form-check">
@@ -59,9 +51,27 @@
             class="form-check-input"
             id="desayuno"
             [(ngModel)]="desayuno"
+            (change)="calcularPrecioTotal()"
           />
-          <label class="form-check-label" for="desayuno">Desayuno</label>
+          <label class="form-check-label" for="desayuno">
+            Desayuno ({{ habitacion.precioDesayuno | currency: "EUR" }} por
+            noche)
+          </label>
         </div>
+      </div>
+
+      <h4>Precio total:</h4>
+      <div>
+        <span>
+          {{ habitacion.precioNoche | currency: "EUR" }} x
+          {{ numeroDeNoches }} noches
+          <span *ngIf="desayuno">
+            + {{ habitacion.precioDesayuno | currency: "EUR" }} x
+            {{ numeroDeNoches }} noches
+          </span>
+          =
+        </span>
+        <span class="fw-bold"> {{ precioTotal | currency: "EUR" }} </span>
       </div>
 
       <a class="btn btn-primary" (click)="confirmarReserva()"> Reservar </a>

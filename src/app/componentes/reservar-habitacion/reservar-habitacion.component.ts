@@ -22,6 +22,7 @@ export class ReservarHabitacionComponent implements OnInit {
   reserva!: RespuestaReserva;
   numHuespedes: number = 1;
   desayuno: boolean = false;
+  precioTotal!: number;
 
   constructor(
     private servicio: HotelesService,
@@ -37,12 +38,12 @@ export class ReservarHabitacionComponent implements OnInit {
       this.check_in = params['check_in'];
       this.check_out = params['check_out'];
     });
+
     this.calcularNumeroDeNoches();
-    console.log('Num noches: ' + this.numeroDeNoches);
 
     this.habitacion = await this.servicio.getHabitacion(this.idHabitacion);
     this.hotel = await this.servicio.getHotel(this.habitacion.idHotel);
-    console.log(this.habitacion);
+    this.precioTotal = this.habitacion.precioNoche * this.numeroDeNoches;
   }
 
   calcularNumeroDeNoches() {
@@ -66,5 +67,16 @@ export class ReservarHabitacionComponent implements OnInit {
     console.log(this.reserva);
 
     this.router.navigate([`/reserva-confirmada/${this.reserva.id}`], {});
+  }
+
+  calcularPrecioTotal() {
+    if (this.desayuno) {
+      this.precioTotal =
+        this.numeroDeNoches * this.habitacion.precioNoche +
+        this.habitacion.precioDesayuno! * this.numeroDeNoches;
+    } else {
+      this.precioTotal = this.habitacion.precioNoche * this.numeroDeNoches;
+    }
+    console.log(this.desayuno);
   }
 }
