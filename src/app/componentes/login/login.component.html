@@ -1,0 +1,31 @@
+<form class="container mt-2" #formulario="ngForm" (ngSubmit)="login()">
+  <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input
+      type="email"
+      class="form-control"
+      name="email"
+      id="email"
+      [(ngModel)]="usuario.email"
+    />
+  </div>
+  <div class="mb-3">
+    <label for="password" class="form-label">Contraseña</label>
+    <input
+      type="password"
+      class="form-control"
+      name="password"
+      id="password"
+      [(ngModel)]="usuario.password"
+    />
+  </div>
+
+  <div class="alert alert-danger" role="alert" *ngIf="mensaje != null">
+    {{ mensaje }}
+  </div>
+
+  <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
+  <div class="mt-3">
+    <a class="form-text" href="#">¿Has olvidado tu contraseña?</a>
+  </div>
+</form>
