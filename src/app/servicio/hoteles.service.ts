@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { catchError, lastValueFrom } from 'rxjs';
+import { BehaviorSubject, catchError, lastValueFrom } from 'rxjs';
 import { NuevaReserva } from '../modelo/nueva-reserva';
 import { RespuestaFoto } from '../modelo/respuesta-foto';
 import { RespuesHabitacion } from '../modelo/respuesta-habitacion';
@@ -13,6 +13,9 @@ import { Usuario } from '../modelo/usuario';
   providedIn: 'root',
 })
 export class HotelesService {
+  public isUserLoggedIn: BehaviorSubject<boolean> =
+    new BehaviorSubject<boolean>(false);
+
   constructor(private http: HttpClient) {}
 
   async getHoteles() {

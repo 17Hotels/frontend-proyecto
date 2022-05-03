@@ -31,7 +31,14 @@ export class LoginComponent implements OnInit {
       this.usuario.password = '';
       this.mensaje = 'Usuario o contraseña incorrectos';
     } else {
-      this.mensaje = '';
+      localStorage.setItem('usuario', JSON.stringify(this.detallesUsuario));
+      localStorage.setItem(
+        'foto',
+        `https://randomuser.me/api/portraits/lego/${Math.floor(
+          Math.random() * 9
+        )}.jpg`
+      );
+      this.servicio.isUserLoggedIn.next(true);
       this.router.navigateByUrl('/home');
     }
   }

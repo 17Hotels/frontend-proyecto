@@ -1,4 +1,4 @@
-<nav class="navbar navbar-custom navbar-expand-sm navbar-dark bg-dark">
+<nav class="navbar navbar-custom navbar-expand navbar-dark bg-dark">
   <div class="container-fluid">
     <a class="navbar-brand" routerLink="/home">
       <img src="/assets/logo.png" alt="Logo 17Hotels" width="175" />
@@ -16,11 +16,92 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="nav navbar-nav ms-auto w-100 justify-content-end me-3">
-        <li class="nav-item">
-          <a class="nav-link" routerLink="/login">
+        <!--<li class="nav-item">
+          
+          <a class="nav-link" routerLink="/login" *ngIf="usuario == null">
             <i class="bi bi-person-circle"></i> Iniciar Sesión
           </a>
+          <a class="nav-link" routerLink="/login" *ngIf="usuario != null">
+            <i class="bi bi-person-circle"></i> {{ usuario.nombre }}
+          </a>
+        </li>-->
+
+        <li class="nav-item" *ngIf="!isUserLoggedIn">
+          <a class="nav-link" routerLink="/login">
+            <svg
+              xmlns="http://www.w3.org/2000/svg"
+              width="40"
+              height="40"
+              fill="currentColor"
+              class="bi bi-person-circle"
+              viewBox="0 0 16 16"
+            >
+              <path d="M11 6a3 3 0 1 1-6 0 3 3 0 0 1 6 0z" />
+              <path
+                fill-rule="evenodd"
+                d="M0 8a8 8 0 1 1 16 0A8 8 0 0 1 0 8zm8-7a7 7 0 0 0-5.468 11.37C3.242 11.226 4.805 10 8 10s4.757 1.225 5.468 2.37A7 7 0 0 0 8 1z"
+              />
+            </svg>
+          </a>
         </li>
+
+        <li class="nav-item dropdown" *ngIf="isUserLoggedIn">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdownMenuLink"
+            role="button"
+            data-bs-toggle="dropdown"
+            aria-expanded="false"
+          >
+            <img
+              [src]="foto"
+              width="40"
+              height="40"
+              class="rounded-circle"
+              alt="Foto de perfil de {{ usuario.nombre }}"
+            />
+            <!--
+            <span *ngIf="usuario == null"> Iniciar Sesión</span>
+            <span *ngIf="usuario != null"> {{ usuario.nombre }}</span> -->
+          </a>
+          <ul
+            class="dropdown-menu dropdown-menu-end"
+            aria-labelledby="navbarDropdownMenuLink"
+          >
+            <li><a class="dropdown-item" href="#">Action</a></li>
+            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><hr class="dropdown-divider" /></li>
+            <li>
+              <a class="dropdown-item" (click)="logout()">Cerrar Sesión</a>
+            </li>
+          </ul>
+        </li>
+
+        <!--
+        <li class="nav-item dropdown">
+          <a
+            class="nav-link dropdown-toggle"
+            href="#"
+            id="navbarDropdownMenuLink"
+            role="button"
+            data-toggle="dropdown"
+            aria-haspopup="true"
+            aria-expanded="false"
+          >
+            <img
+              src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg"
+              width="40"
+              height="40"
+              class="rounded-circle"
+            />
+          </a>
+          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+            <a class="dropdown-item" href="#">Dashboard</a>
+            <a class="dropdown-item" href="#">Edit Profile</a>
+            <a class="dropdown-item" href="#">Log Out</a>
+          </div>
+        </li>-->
       </ul>
     </div>
   </div>
