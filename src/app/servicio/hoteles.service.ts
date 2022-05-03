@@ -7,7 +7,8 @@ import { RespuesHabitacion } from '../modelo/respuesta-habitacion';
 import { RespuestaHotel } from '../modelo/respuesta-hotel';
 import { RespuestaReserva } from '../modelo/respuesta-reserva';
 import { RespuestaUsuario } from '../modelo/respuesta-usuario';
-import { Usuario } from '../modelo/usuario';
+import { UsuarioLogin } from '../modelo/usuario-login';
+import { UsuarioRegistro } from '../modelo/usuario-registro';
 
 @Injectable({
   providedIn: 'root',
@@ -77,12 +78,21 @@ export class HotelesService {
     );
   }
 
-  async login(usuario: Usuario) {
+  async login(usuario: UsuarioLogin) {
     return lastValueFrom(
       this.http.post<RespuestaUsuario>(`http://localhost:9090/usuarios/login`, {
         email: usuario.email,
         password: usuario.password,
       })
+    );
+  }
+
+  async registro(usuario: UsuarioRegistro) {
+    return lastValueFrom(
+      this.http.post<RespuestaUsuario>(
+        `http://localhost:9090/usuarios/registro`,
+        usuario
+      )
     );
   }
 

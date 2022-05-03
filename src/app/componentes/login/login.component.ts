@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
 import { RespuestaUsuario } from 'src/app/modelo/respuesta-usuario';
-import { Usuario } from 'src/app/modelo/usuario';
+import { UsuarioLogin } from 'src/app/modelo/usuario-login';
 import { HotelesService } from 'src/app/servicio/hoteles.service';
 
 @Component({
@@ -10,7 +10,7 @@ import { HotelesService } from 'src/app/servicio/hoteles.service';
   styleUrls: ['./login.component.css'],
 })
 export class LoginComponent implements OnInit {
-  usuario: Usuario = {
+  usuario: UsuarioLogin = {
     email: '',
     password: '',
   };
@@ -23,7 +23,7 @@ export class LoginComponent implements OnInit {
 
   async login() {
     this.detallesUsuario = await this.servicio.login(this.usuario).catch(() => {
-      console.log('Error');
+      console.log('Usuario no encontrado');
       return null;
     });
 

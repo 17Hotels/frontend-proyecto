@@ -1,1 +1,105 @@
-<p>registro works!</p>
+<form class="container mt-3" (ngSubmit)="registrarse()" #formulario="ngForm">
+  <div class="mb-3">
+    <label for="email" class="form-label">Email</label>
+    <input
+      type="email"
+      class="form-control"
+      id="email"
+      name="email"
+      [(ngModel)]="usuario.email"
+      [email]="true"
+      required="true"
+      #email="ngModel"
+    />
+    <div
+      class="alert alert-danger mt-2"
+      role="alert"
+      *ngIf="email.errors?.['email']"
+    >
+      El email no es válido
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <div class="col-6">
+      <label for="nombre" class="form-label">Nombre</label>
+      <input
+        type="text"
+        class="form-control"
+        id="nombre"
+        name="nombre"
+        required="true"
+        [(ngModel)]="usuario.nombre"
+        #nombre="ngModel"
+      />
+      <div
+        class="alert alert-danger mt-2"
+        role="alert"
+        *ngIf="nombre.invalid && (nombre.dirty || nombre.touched)"
+      >
+        El nombre es oligatorio
+      </div>
+    </div>
+
+    <div class="col-6">
+      <label for="apellidos" class="form-label">Apellidos</label>
+      <input
+        type="text"
+        class="form-control"
+        id="apellidos"
+        name="apellidos"
+        [(ngModel)]="usuario.apellidos"
+      />
+    </div>
+  </div>
+
+  <div class="mb-3 row">
+    <div class="col-6">
+      <label for="password" class="form-label">Contraseña</label>
+      <input
+        type="password"
+        class="form-control"
+        id="password"
+        name="password"
+        required="true"
+        [(ngModel)]="usuario.password"
+        #password="ngModel"
+      />
+      <div
+        class="alert alert-danger mt-2"
+        role="alert"
+        *ngIf="password.invalid && (password.dirty || password.touched)"
+      >
+        La contraseña es obligatoria
+      </div>
+    </div>
+    <div class="col-6">
+      <label for="confirmarPassword" class="form-label">
+        Confirmar Contraseña
+      </label>
+      <input
+        type="password"
+        class="form-control"
+        id="confirmarPassword"
+        name="confirmarPassword"
+        required="true"
+        [(ngModel)]="confirmarPassword"
+        #confirmar="ngModel"
+      />
+      <div
+        class="alert alert-danger mt-2"
+        role="alert"
+        *ngIf="confirmar.invalid && (confirmar.dirty || confirmar.touched)"
+      >
+        Tienes que confirmar la contraseña
+      </div>
+    </div>
+  </div>
+
+  <div class="alert alert-warning mt-2" role="alert" *ngIf="mensaje != null">
+    {{ mensaje }}
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="formulario.invalid">
+    Registrarse
+  </button>
+</form>

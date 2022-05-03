@@ -18,7 +18,7 @@ const routes: Routes = [
     component: ReservaConfirmadaComponent,
   },
   { path: 'login', component: LoginComponent },
-  { path: 'registrarse', component: RegistroComponent },
+  { path: 'registro', component: RegistroComponent },
   { path: '**', redirectTo: 'home' },
 ];
 
