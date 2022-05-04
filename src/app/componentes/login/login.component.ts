@@ -57,4 +57,10 @@ export class LoginComponent implements OnInit {
         : this.router.navigateByUrl(this.urlAnterior);
     }
   }
+
+  irRegistro() {
+    this.router.navigate(['/registro'], {
+      queryParams: { urlAnterior: this.router.url },
+    });
+  }
 }

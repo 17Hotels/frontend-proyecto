@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
 import { RespuestaUsuario } from 'src/app/modelo/respuesta-usuario';
 import { UsuarioRegistro } from 'src/app/modelo/usuario-registro';
 import { HotelesService } from 'src/app/servicio/hoteles.service';
@@ -15,31 +16,53 @@ export class RegistroComponent implements OnInit {
     email: '',
     password: '',
   };
-  usuarioDetalles!: RespuestaUsuario | null;
+  detallesUsuario!: RespuestaUsuario | null;
   confirmarPassword!: string;
   mensaje!: string;
+  urlAnterior!: string;
 
-  constructor(private servicio: HotelesService) {}
+  constructor(
+    private servicio: HotelesService,
+    private router: Router,
+    private ruta: ActivatedRoute
+  ) {}
 
   ngOnInit(): void {}
 
   async registrarse() {
-    if (this.usuario.password !== this.confirmarPassword) {
-      this.mensaje = 'Las contraseñas no coinciden';
-      document.getElementById('password')?.focus();
-      this.confirmarPassword = '';
-    } else {
-      this.usuarioDetalles = await this.servicio
+    if (this.usuario.password === this.confirmarPassword) {
+      this.detallesUsuario = await this.servicio
         .registro(this.usuario)
         .catch(() => {
           console.log('ya existe el usuario con ese email');
           return null;
         });
 
-      if (this.usuarioDetalles == null) {
+      if (this.detallesUsuario == null) {
         document.getElementById('email')?.focus();
         this.mensaje = 'Ya existe un usuario registrado con este email';
+      } else {
+        // Registrado con éxito, inicia sesión automáticamente
+        localStorage.setItem('usuario', JSON.stringify(this.detallesUsuario));
+        localStorage.setItem(
+          'foto',
+          `https://randomuser.me/api/portraits/lego/${Math.floor(
+            Math.random() * 9
+          )}.jpg`
+        );
+        this.servicio.isUserLoggedIn.next(true);
+
+        this.ruta.queryParams.subscribe(
+          (params) => (this.urlAnterior = params['urlAnterior'])
+        );
+        this.urlAnterior == undefined
+          ? this.router.navigateByUrl(this.router.url)
+          : this.router.navigateByUrl(this.urlAnterior);
       }
+    } else {
+      this.mensaje = 'Las contraseñas no coinciden';
+      document.getElementById('password')?.focus();
+      this.confirmarPassword = '';
     }
   }
 }

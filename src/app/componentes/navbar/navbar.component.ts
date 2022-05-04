@@ -30,8 +30,6 @@ export class NavbarComponent implements OnInit {
   }
 
   irLogin() {
-    console.log(this.router.url);
-    console.log(decodeURIComponent(this.router.url));
     this.router.navigate(['/login'], {
       queryParams: { urlAnterior: this.router.url },
     });
