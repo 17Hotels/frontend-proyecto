@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { RespuestaUsuario } from 'src/app/modelo/respuesta-usuario';
 import { HotelesService } from 'src/app/servicio/hoteles.service';
 
@@ -13,7 +14,7 @@ export class NavbarComponent implements OnInit {
   foto!: string | null;
   isUserLoggedIn!: boolean;
 
-  constructor(private servicio: HotelesService) {}
+  constructor(private servicio: HotelesService, private router: Router) {}
 
   ngOnInit(): void {
     this.setIsUserLoggedIn(); // Comprobamos si el usuario está logueado cuando se carga la página
@@ -25,6 +26,14 @@ export class NavbarComponent implements OnInit {
       if (this.isUserLoggedIn) {
         this.getDetallesUsuario();
       }
+    });
+  }
+
+  irLogin() {
+    console.log(this.router.url);
+    console.log(decodeURIComponent(this.router.url));
+    this.router.navigate(['/login'], {
+      queryParams: { urlAnterior: this.router.url },
     });
   }
 

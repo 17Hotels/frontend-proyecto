@@ -16,18 +16,8 @@
     </button>
     <div class="collapse navbar-collapse" id="navbarNav">
       <ul class="nav navbar-nav ms-auto w-100 justify-content-end me-3">
-        <!--<li class="nav-item">
-          
-          <a class="nav-link" routerLink="/login" *ngIf="usuario == null">
-            <i class="bi bi-person-circle"></i> Iniciar Sesión
-          </a>
-          <a class="nav-link" routerLink="/login" *ngIf="usuario != null">
-            <i class="bi bi-person-circle"></i> {{ usuario.nombre }}
-          </a>
-        </li>-->
-
         <li class="nav-item" *ngIf="!isUserLoggedIn">
-          <a class="nav-link" routerLink="/login">
+          <a class="nav-link" (click)="irLogin()">
             <svg
               xmlns="http://www.w3.org/2000/svg"
               width="40"
@@ -61,47 +51,19 @@
               class="rounded-circle"
               alt="Foto de perfil de {{ usuario.nombre }}"
             />
-            <!--
-            <span *ngIf="usuario == null"> Iniciar Sesión</span>
-            <span *ngIf="usuario != null"> {{ usuario.nombre }}</span> -->
           </a>
           <ul
             class="dropdown-menu dropdown-menu-end"
             aria-labelledby="navbarDropdownMenuLink"
           >
-            <li><a class="dropdown-item" href="#">Action</a></li>
-            <li><a class="dropdown-item" href="#">Another action</a></li>
+            <li><a class="dropdown-item" href="#">Mis Reservas</a></li>
+            <li><a class="dropdown-item" href="#">Mis Valoraciones</a></li>
             <li><hr class="dropdown-divider" /></li>
             <li>
               <a class="dropdown-item" (click)="logout()">Cerrar Sesión</a>
             </li>
           </ul>
         </li>
-
-        <!--
-        <li class="nav-item dropdown">
-          <a
-            class="nav-link dropdown-toggle"
-            href="#"
-            id="navbarDropdownMenuLink"
-            role="button"
-            data-toggle="dropdown"
-            aria-haspopup="true"
-            aria-expanded="false"
-          >
-            <img
-              src="https://s3.eu-central-1.amazonaws.com/bootstrapbaymisc/blog/24_days_bootstrap/fox.jpg"
-              width="40"
-              height="40"
-              class="rounded-circle"
-            />
-          </a>
-          <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-            <a class="dropdown-item" href="#">Dashboard</a>
-            <a class="dropdown-item" href="#">Edit Profile</a>
-            <a class="dropdown-item" href="#">Log Out</a>
-          </div>
-        </li>-->
       </ul>
     </div>
   </div>

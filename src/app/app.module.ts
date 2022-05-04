@@ -19,6 +19,7 @@ import { ReservarHabitacionComponent } from './componentes/reservar-habitacion/r
 import { ReservaConfirmadaComponent } from './componentes/reserva-confirmada/reserva-confirmada.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { LoginComponent } from './componentes/login/login.component';
+import { MisReservasComponent } from './componentes/mis-reservas/mis-reservas.component';
 
 registerLocaleData(localeEs);
 
@@ -35,6 +36,7 @@ registerLocaleData(localeEs);
     ReservaConfirmadaComponent,
     RegistroComponent,
     LoginComponent,
+    MisReservasComponent,
   ],
   imports: [
     BrowserModule,

@@ -24,11 +24,17 @@ export class ReservarHabitacionComponent implements OnInit {
   desayuno: boolean = false;
   precioTotal!: number;
 
+  isUserLoggedIn!: boolean;
+
   constructor(
     private servicio: HotelesService,
     private ruta: ActivatedRoute,
     private router: Router
-  ) {}
+  ) {
+    this.servicio.isUserLoggedIn.subscribe(
+      (value) => (this.isUserLoggedIn = value)
+    );
+  }
 
   async ngOnInit() {
     this.ruta.params.subscribe(
