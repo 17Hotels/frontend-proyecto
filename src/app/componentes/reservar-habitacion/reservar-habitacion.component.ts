@@ -4,6 +4,7 @@ import { NuevaReserva } from 'src/app/modelo/nueva-reserva';
 import { RespuesHabitacion } from 'src/app/modelo/respuesta-habitacion';
 import { RespuestaHotel } from 'src/app/modelo/respuesta-hotel';
 import { RespuestaReserva } from 'src/app/modelo/respuesta-reserva';
+import { RespuestaUsuario } from 'src/app/modelo/respuesta-usuario';
 import { HotelesService } from 'src/app/servicio/hoteles.service';
 
 @Component({
@@ -60,9 +61,13 @@ export class ReservarHabitacionComponent implements OnInit {
   }
 
   async confirmarReserva() {
+    let usuarioString = localStorage.getItem('usuario');
+    let usuario: RespuestaUsuario =
+      usuarioString != null ? JSON.parse(usuarioString) : null;
+
     let nuevaReserva: NuevaReserva = {
       idHabitacion: this.idHabitacion,
-      idUsuario: 1,
+      idUsuario: usuario.id,
       numeroHuespedes: this.numHuespedes,
       fechaEntrada: new Date(this.check_in),
       fechaSalida: new Date(this.check_out),

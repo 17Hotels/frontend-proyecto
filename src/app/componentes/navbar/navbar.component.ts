@@ -39,6 +39,7 @@ export class NavbarComponent implements OnInit {
     localStorage.removeItem('usuario');
     localStorage.removeItem('foto');
     this.servicio.isUserLoggedIn.next(false);
+    this.router.navigateByUrl('/home');
   }
 
   setIsUserLoggedIn() {

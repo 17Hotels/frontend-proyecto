@@ -43,9 +43,7 @@ export class LoginComponent implements OnInit {
       localStorage.setItem('usuario', JSON.stringify(this.detallesUsuario));
       localStorage.setItem(
         'foto',
-        `https://randomuser.me/api/portraits/lego/${Math.floor(
-          Math.random() * 9
-        )}.jpg`
+        `https://ui-avatars.com/api/?name=${this.detallesUsuario.nombre}&background=random`
       );
       this.servicio.isUserLoggedIn.next(true);
 

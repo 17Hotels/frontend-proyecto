@@ -1,1 +1,6 @@
-<p>mis-reservas works!</p>
+<div class="container">
+  <div class="alert alert-info mt-2" role="alert" *ngIf="reservas?.length == 0">
+    No has hecho ninguna reserva aún, puedes hacerlo
+    <a [routerLink]="['/home']">buscando un nuevo destino</a>.
+  </div>
+</div>

@@ -96,6 +96,14 @@ export class HotelesService {
     );
   }
 
+  async getReservasUsuario(idusuario: number) {
+    return lastValueFrom(
+      this.http.get<RespuestaReserva[]>(
+        `http://localhost:9090/usuarios/${idusuario}/reservas`
+      )
+    );
+  }
+
   async getUsuario(id: number) {
     return lastValueFrom(
       this.http.get<RespuestaUsuario>(`http://localhost:9090/usuarios/${id}`)
