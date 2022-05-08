@@ -2,3 +2,25 @@
   <img class="img-fluid" src="/assets/hotel.jpg" alt="" />
 </div>
 <app-seleccion-destino></app-seleccion-destino>
+
+<div class="container mt-4">
+  <div class="row">
+    <div
+      *ngFor="let destino of destinos"
+      class="col-12 col-md-6 col-lg-4 my-2"
+      id="destino"
+    >
+      <a href="/hoteles?destino={{ destino }}">
+        <img
+          src="assets/Ciudades/{{ destino }}.jpg"
+          class="img-thumbnail"
+          id="ciudad"
+          alt="Imagen de {{ destino }}"
+        />
+        <h5 id="nombre">
+          {{ destino }}
+        </h5>
+      </a>
+    </div>
+  </div>
+</div>

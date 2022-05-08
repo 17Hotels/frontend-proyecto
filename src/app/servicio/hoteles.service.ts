@@ -7,6 +7,7 @@ import { RespuesHabitacion } from '../modelo/respuesta-habitacion';
 import { RespuestaHotel } from '../modelo/respuesta-hotel';
 import { RespuestaReserva } from '../modelo/respuesta-reserva';
 import { RespuestaUsuario } from '../modelo/respuesta-usuario';
+import { RespuestaValoracion } from '../modelo/respuesta-valoracion';
 import { UsuarioLogin } from '../modelo/usuario-login';
 import { UsuarioRegistro } from '../modelo/usuario-registro';
 
@@ -96,10 +97,18 @@ export class HotelesService {
     );
   }
 
-  async getReservasUsuario(idusuario: number) {
+  async getReservasUsuario(idUsuario: number) {
     return lastValueFrom(
       this.http.get<RespuestaReserva[]>(
-        `http://localhost:9090/usuarios/${idusuario}/reservas`
+        `http://localhost:9090/usuarios/${idUsuario}/reservas`
+      )
+    );
+  }
+
+  async getValoracionesHotel(idHotel: number) {
+    return lastValueFrom(
+      this.http.get<RespuestaValoracion[]>(
+        `http://localhost:9090/hoteles/${idHotel}/valoraciones`
       )
     );
   }

@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
 import { RespuesHabitacion } from 'src/app/modelo/respuesta-habitacion';
 import { RespuestaHotel } from 'src/app/modelo/respuesta-hotel';
+import { RespuestaValoracion } from 'src/app/modelo/respuesta-valoracion';
 import { HotelesService } from 'src/app/servicio/hoteles.service';
 
 @Component({
@@ -11,6 +12,7 @@ import { HotelesService } from 'src/app/servicio/hoteles.service';
 })
 export class HabitacionesComponent implements OnInit {
   habitaciones!: RespuesHabitacion[];
+  valoraciones!: RespuestaValoracion[];
   hotel!: RespuestaHotel;
   idHotel!: number;
   check_in!: string;
@@ -32,9 +34,9 @@ export class HabitacionesComponent implements OnInit {
     });
 
     this.habitaciones = await this.servicio.getHabitacionesHotel(this.idHotel);
-    console.log(this.habitaciones);
     this.hotel = await this.servicio.getHotel(this.idHotel);
-    console.log(this.hotel);
+    this.valoraciones = await this.servicio.getValoracionesHotel(this.idHotel);
+    console.log('valoraciones: ', this.valoraciones);
   }
 
   reservarHabitacion(idHabitacion: number) {

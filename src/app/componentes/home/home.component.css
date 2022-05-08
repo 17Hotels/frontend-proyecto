@@ -2,3 +2,21 @@ img {
   /*height: 50em;*/
   opacity: 0.85;
 }
+
+#destino {
+  position: relative;
+}
+
+#ciudad {
+  width: 100%;
+  height: 250px;
+}
+
+#nombre {
+  position: absolute;
+  top: 10px;
+  left: 20px;
+  color: white;
+  text-shadow: 1px 1px 1px #000;
+  background: rgba(0, 0, 0, 0.3);
+}

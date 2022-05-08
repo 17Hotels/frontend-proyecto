@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { HotelesService } from 'src/app/servicio/hoteles.service';
 
 @Component({
   selector: 'app-home',
@@ -6,7 +7,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./home.component.css'],
 })
 export class HomeComponent implements OnInit {
-  constructor() {}
+  destinos!: string[];
+  constructor(private servicio: HotelesService) {}
 
-  ngOnInit(): void {}
+  async ngOnInit() {
+    this.destinos = await this.servicio.getDestinos();
+    console.log(this.destinos);
+  }
 }
