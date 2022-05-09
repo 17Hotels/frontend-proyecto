@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { Reserva } from 'src/app/modelo/reserva';
+import { RespuesHabitacion } from 'src/app/modelo/respuesta-habitacion';
+import { RespuestaHotel } from 'src/app/modelo/respuesta-hotel';
 import { RespuestaReserva } from 'src/app/modelo/respuesta-reserva';
 import { RespuestaUsuario } from 'src/app/modelo/respuesta-usuario';
 import { HotelesService } from 'src/app/servicio/hoteles.service';
@@ -10,7 +13,10 @@ import { HotelesService } from 'src/app/servicio/hoteles.service';
   styleUrls: ['./mis-reservas.component.css'],
 })
 export class MisReservasComponent implements OnInit {
-  reservas!: RespuestaReserva[];
+  respuestaReservas!: RespuestaReserva[];
+  reservas: Reserva[] = [];
+  habitacion!: RespuesHabitacion;
+  hotel!: RespuestaHotel;
 
   constructor(private servicio: HotelesService, private router: Router) {}
 
@@ -25,7 +31,27 @@ export class MisReservasComponent implements OnInit {
     let usuario: RespuestaUsuario =
       usuarioString != null ? JSON.parse(usuarioString) : null;
 
-    this.reservas = await this.servicio.getReservasUsuario(usuario.id);
-    console.log(this.reservas);
+    this.respuestaReservas = await this.servicio.getReservasUsuario(usuario.id);
+
+    // Añadir la habitación y el hotel a la reserva en base a los ids
+    for (let r of this.respuestaReservas) {
+      let habitacion: RespuesHabitacion = await this.servicio.getHabitacion(
+        r.idHabitacion
+      );
+
+      let reserva: Reserva = {
+        id: r.id,
+        habitacion: habitacion,
+        hotel: await this.servicio.getHotel(habitacion.idHotel),
+        idUsuario: r.idUsuario,
+        numeroHuespedes: r.numeroHuespedes,
+        fechaEntrada: r.fechaEntrada,
+        fechaSalida: r.fechaSalida,
+        precioTotal: r.precioTotal,
+        desayuno: r.desayuno,
+      };
+      this.reservas.push(reserva);
+    }
+    console.log('reservas', this.reservas);
   }
 }

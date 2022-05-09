@@ -3,4 +3,53 @@
     No has hecho ninguna reserva aún, puedes hacerlo
     <a [routerLink]="['/home']">buscando un nuevo destino</a>.
   </div>
+
+  <div *ngIf="reservas?.length != 0">
+    <div
+      class="row border rounded align-items-center my-2"
+      *ngFor="let reserva of reservas"
+    >
+      <!-- Imagenes del Hotel -->
+      <div class="col-lg-4 mt-1">
+        <img
+          class="img-fluid img-responsive"
+          [src]="reserva.hotel?.fotos?.[0]?.enlace"
+        />
+      </div>
+
+      <!-- Informacion del Hotel -->
+      <div class="col-lg-6 mt-1">
+        <h4>
+          <a [href]="reserva.hotel?.web" title="Ver web del hotel">
+            {{ reserva.hotel?.nombre }}
+          </a>
+          <span class="h5">({{ reserva.habitacion.nombre }})</span>
+        </h4>
+        <h6>
+          <i class="bi bi-geo-alt"></i>
+          {{ reserva.hotel?.direccion }},
+          {{ reserva.hotel?.codigoPostal }}
+          {{ reserva.hotel?.ciudad }},
+          {{ reserva.hotel?.pais }}
+        </h6>
+        <h6><i class="bi bi-telephone"></i> {{ reserva.hotel.telefono }}</h6>
+        <h5>
+          <i class="bi bi-calendar-event"></i>
+          {{ reserva.fechaEntrada | date }} - {{ reserva.fechaSalida | date }}
+        </h5>
+      </div>
+
+      <!-- Precio -->
+      <div class="col-lg-2">
+        <div class="d-flex">
+          <div class="me-1">
+            <h5>Precio total</h5>
+            <h4>
+              {{ reserva.precioTotal | currency: "EUR" }}
+            </h4>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
