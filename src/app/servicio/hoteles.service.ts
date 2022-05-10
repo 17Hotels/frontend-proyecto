@@ -2,6 +2,7 @@ import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { BehaviorSubject, catchError, lastValueFrom } from 'rxjs';
 import { NuevaReserva } from '../modelo/nueva-reserva';
+import { NuevaValoracion } from '../modelo/nueva-valoracion';
 import { RespuestaFoto } from '../modelo/respuesta-foto';
 import { RespuesHabitacion } from '../modelo/respuesta-habitacion';
 import { RespuestaHotel } from '../modelo/respuesta-hotel';
@@ -109,6 +110,15 @@ export class HotelesService {
     return lastValueFrom(
       this.http.get<RespuestaValoracion[]>(
         `http://localhost:9090/hoteles/${idHotel}/valoraciones`
+      )
+    );
+  }
+
+  async valorarHotel(valoracion: NuevaValoracion) {
+    return lastValueFrom(
+      this.http.post<RespuestaValoracion>(
+        `http://localhost:9090/hoteles/${valoracion.idHotel}/valorar`,
+        valoracion
       )
     );
   }

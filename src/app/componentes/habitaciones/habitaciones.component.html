@@ -178,7 +178,126 @@
     </div>
   </div>
 
-  <div class="row" mt-2 *ngIf="valoraciones?.length != 0">
-    <h3>Valoraciones</h3>
+  <div>
+    <span class="h3"> Valoraciones</span>
+    <!-- Button trigger modal -->
+    <button
+      *ngIf="isUserLoggedIn"
+      type="button"
+      class="btn btn-outline-primary float-end"
+      data-bs-toggle="modal"
+      data-bs-target="#exampleModal"
+    >
+      Escribe un comentario
+    </button>
+
+    <!-- Modal -->
+    <div
+      class="modal fade"
+      id="exampleModal"
+      tabindex="-1"
+      aria-labelledby="exampleModalLabel"
+      aria-hidden="true"
+    >
+      <div class="modal-dialog modal-dialog-centered">
+        <form class="modal-content" (ngSubmit)="enviarValoracion()">
+          <div class="modal-header">
+            <h5 class="modal-title" id="exampleModalLabel">
+              Escribe tu comentario
+            </h5>
+            <button
+              type="button"
+              class="btn-close"
+              data-bs-dismiss="modal"
+              aria-label="Close"
+            ></button>
+          </div>
+          <div class="modal-body">
+            <div class="mb-3">
+              <label for="comentario" class="form-label"> Comentario </label>
+              <textarea
+                class="form-control"
+                name="comentario"
+                id="comentario"
+                rows="4"
+                [(ngModel)]="comentario"
+                required
+              ></textarea>
+            </div>
+            <div class="mb-3">
+              <label for="nota" class="form-label"> Nota </label>
+              <input
+                type="number"
+                class="form-control"
+                name="nota"
+                id="nota"
+                [(ngModel)]="nota"
+                min="0"
+                max="10"
+                required
+              />
+            </div>
+          </div>
+
+          <div class="modal-footer">
+            <button
+              type="button"
+              class="btn btn-outline-secondary"
+              data-bs-dismiss="modal"
+            >
+              Cancelar
+            </button>
+            <button
+              type="submit"
+              class="btn btn-outline-primary"
+              data-bs-dismiss="modal"
+            >
+              Enviar comentario
+            </button>
+          </div>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <div class="row mt-3" *ngIf="valoraciones?.length == 0">
+    <div class="alert alert-info" role="alert">
+      Aún no hay valoraciones para este hotel.
+    </div>
+  </div>
+
+  <div class="row mt-3" *ngIf="valoraciones?.length != 0">
+    <div
+      *ngFor="let valoracion of valoraciones"
+      class="col-12 col-md-6 col-lg-4 col-xl-3 mt-2"
+    >
+      <div class="card h-100">
+        <div class="card-body">
+          <img
+            src="https://ui-avatars.com/api/?name={{
+              valoracion.usuario?.nombre
+            }}&background=random"
+            width="40"
+            height="40"
+            class="rounded-circle float-start me-2"
+            alt="Imagen de perfil de {{ valoracion.usuario?.nombre }}"
+          />
+          <div
+            class="px-2 h4 text-center border rounded border-primary float-end"
+            title="Nota del usuario"
+          >
+            {{ valoracion.nota | number: "1.0-1" }}
+          </div>
+          <h5 class="card-title mt-2">
+            {{ valoracion.usuario?.nombre }} {{ valoracion.usuario?.apellidos }}
+          </h5>
+
+          <h6 class="card-subtitle mt-4 text-muted">
+            Publicada el {{ valoracion.fecha | date: "dd MMM. YYYY" }}
+          </h6>
+          <p class="card-text mt-2">{{ valoracion.comentario }}</p>
+        </div>
+      </div>
+    </div>
   </div>
 </div>
