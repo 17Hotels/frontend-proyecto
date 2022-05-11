@@ -77,7 +77,10 @@ export class ReservarHabitacionComponent implements OnInit {
     this.reserva = await this.servicio.nuevaReserva(nuevaReserva);
     console.log(this.reserva);
 
-    this.router.navigate([`/reserva-confirmada/${this.reserva.id}`], {});
+    this.router.navigate(['/mis-reservas'], {
+      queryParams: { urlAnterior: 'reservar' },
+    });
+    //this.router.navigate([`/reserva-confirmada/${this.reserva.id}`], {});
   }
 
   calcularPrecioTotal() {

@@ -53,3 +53,34 @@
     </div>
   </div>
 </div>
+
+<!-- Toast notificación al confirmar la reserva -->
+<div
+  class="position-fixed top-0 start-50 translate-middle-x mt-3"
+  style="z-index: 11"
+>
+  <div
+    id="liveToast"
+    class="toast"
+    role="alert"
+    data-bs-delay="7500"
+    aria-live="assertive"
+    aria-atomic="true"
+  >
+    <div class="toast-header bg-dark text-light">
+      <strong class="me-auto">17Hotels</strong>
+      <small>Ahora mismo</small>
+      <button
+        type="button"
+        class="btn-close btn-close-white"
+        data-bs-dismiss="toast"
+        aria-label="Close"
+      ></button>
+    </div>
+    <div class="toast-body">
+      Tu reserva a
+      <strong>{{ reservas?.[0]?.hotel?.nombre }}</strong>
+      se ha confirmado.
+    </div>
+  </div>
+</div>

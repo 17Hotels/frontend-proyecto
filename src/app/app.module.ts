@@ -16,7 +16,6 @@ import { HotelesComponent } from './componentes/hoteles/hoteles.component';
 import { SeleccionDestinoComponent } from './componentes/seleccion-destino/seleccion-destino.component';
 import { HabitacionesComponent } from './componentes/habitaciones/habitaciones.component';
 import { ReservarHabitacionComponent } from './componentes/reservar-habitacion/reservar-habitacion.component';
-import { ReservaConfirmadaComponent } from './componentes/reserva-confirmada/reserva-confirmada.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { MisReservasComponent } from './componentes/mis-reservas/mis-reservas.component';
@@ -33,7 +32,6 @@ registerLocaleData(localeEs);
     SeleccionDestinoComponent,
     HabitacionesComponent,
     ReservarHabitacionComponent,
-    ReservaConfirmadaComponent,
     RegistroComponent,
     LoginComponent,
     MisReservasComponent,

@@ -6,7 +6,6 @@ import { HotelesComponent } from './componentes/hoteles/hoteles.component';
 import { LoginComponent } from './componentes/login/login.component';
 import { MisReservasComponent } from './componentes/mis-reservas/mis-reservas.component';
 import { RegistroComponent } from './componentes/registro/registro.component';
-import { ReservaConfirmadaComponent } from './componentes/reserva-confirmada/reserva-confirmada.component';
 import { ReservarHabitacionComponent } from './componentes/reservar-habitacion/reservar-habitacion.component';
 
 const routes: Routes = [
@@ -14,10 +13,6 @@ const routes: Routes = [
   { path: 'hoteles', component: HotelesComponent },
   { path: 'hoteles/:idHotel/habitaciones', component: HabitacionesComponent },
   { path: 'reservar/:idHabitacion', component: ReservarHabitacionComponent },
-  {
-    path: 'reserva-confirmada/:idReserva',
-    component: ReservaConfirmadaComponent,
-  },
   { path: 'login', component: LoginComponent },
   { path: 'registro', component: RegistroComponent },
   { path: 'mis-reservas', component: MisReservasComponent },

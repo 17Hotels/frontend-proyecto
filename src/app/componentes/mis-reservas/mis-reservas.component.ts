@@ -1,11 +1,12 @@
 import { Component, OnInit } from '@angular/core';
-import { Router } from '@angular/router';
+import { ActivatedRoute, Router } from '@angular/router';
 import { Reserva } from 'src/app/modelo/reserva';
 import { RespuesHabitacion } from 'src/app/modelo/respuesta-habitacion';
 import { RespuestaHotel } from 'src/app/modelo/respuesta-hotel';
 import { RespuestaReserva } from 'src/app/modelo/respuesta-reserva';
 import { RespuestaUsuario } from 'src/app/modelo/respuesta-usuario';
 import { HotelesService } from 'src/app/servicio/hoteles.service';
+declare function activarToastsBootstrap(): any;
 
 @Component({
   selector: 'app-mis-reservas',
@@ -18,7 +19,11 @@ export class MisReservasComponent implements OnInit {
   habitacion!: RespuesHabitacion;
   hotel!: RespuestaHotel;
 
-  constructor(private servicio: HotelesService, private router: Router) {}
+  constructor(
+    private servicio: HotelesService,
+    private router: Router,
+    private ruta: ActivatedRoute
+  ) {}
 
   async ngOnInit() {
     if (!this.servicio.isUserLoggedIn.value) {
@@ -52,6 +57,8 @@ export class MisReservasComponent implements OnInit {
       };
       this.reservas.push(reserva);
     }
-    console.log('reservas', this.reservas);
+    this.ruta.queryParams.subscribe((parametros) => {
+      parametros['urlAnterior'] == 'reservar' ? activarToastsBootstrap() : null;
+    });
   }
 }
