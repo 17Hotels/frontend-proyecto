@@ -32,7 +32,6 @@ export class LoginComponent implements OnInit {
 
   async login() {
     this.detallesUsuario = await this.servicio.login(this.usuario).catch(() => {
-      console.log('Usuario no encontrado');
       return null;
     });
 

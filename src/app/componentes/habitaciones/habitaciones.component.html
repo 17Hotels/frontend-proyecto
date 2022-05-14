@@ -1,4 +1,5 @@
 <div class="container mt-2">
+  <!-- Nombre del hotel y estrellas -->
   <div class="text-center" *ngIf="hotel != undefined">
     <span class="h2">{{ hotel.nombre }} </span>
     <span *ngFor="let _ of [].constructor(hotel.estrellas)">
@@ -9,6 +10,7 @@
     </span>
   </div>
 
+  <!-- Carousel -->
   <div class="row mt-2">
     <div class="col-12 col-lg-2"></div>
     <div
@@ -18,10 +20,13 @@
     >
       <div class="carousel-inner">
         <div class="carousel-item active">
-          <img [src]="hotel?.fotos?.[0]?.enlace" class="" alt="..." />
+          <img
+            [src]="hotel?.fotos?.[0]?.enlace"
+            alt="Foto de {{ hotel?.nombre }}"
+          />
         </div>
         <div class="carousel-item" *ngFor="let foto of hotel?.fotos | slice: 1">
-          <img [src]="foto?.enlace" class="" alt="..." />
+          <img [src]="foto?.enlace" alt="Foto de {{ hotel?.nombre }}" />
         </div>
       </div>
       <button
@@ -49,6 +54,7 @@
     <p [innerHtml]="hotel?.descripcion" id="descripcion"></p>
   </div>
 
+  <!-- Selección fechas de check-in y check-out -->
   <div class="row">
     <div class="form-floating col-12 col-lg-3 mb-2">
       <input
@@ -129,6 +135,7 @@
     </tbody>
   </table>
 
+  <!-- Información importante -->
   <div class="row mt-2">
     <h3>Información Importante:</h3>
     <div class="row">
@@ -178,6 +185,7 @@
     </div>
   </div>
 
+  <!-- Modal de envío de valoración -->
   <div>
     <span class="h3"> Valoraciones</span>
     <!-- Button trigger modal -->

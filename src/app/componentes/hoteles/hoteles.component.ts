@@ -31,10 +31,6 @@ export class HotelesComponent implements OnInit {
     });
 
     this.hoteles = await this.servicio.getHotelesPorCiudad(this.ciudad);
-    console.log(this.ciudad);
-    console.log(this.check_in);
-    console.log(this.check_out);
-    console.log(this.hoteles);
   }
 
   getCiudadDeDestino(destino: string) {

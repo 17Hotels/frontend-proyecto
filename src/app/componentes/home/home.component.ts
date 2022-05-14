@@ -8,10 +8,10 @@ import { HotelesService } from 'src/app/servicio/hoteles.service';
 })
 export class HomeComponent implements OnInit {
   destinos!: string[];
+
   constructor(private servicio: HotelesService) {}
 
   async ngOnInit() {
     this.destinos = await this.servicio.getDestinos();
-    console.log(this.destinos);
   }
 }

@@ -67,7 +67,7 @@ export class HabitacionesComponent implements OnInit {
       fecha: new Date(),
       nota: this.nota,
     };
-    let val: RespuestaValoracion = await this.servicio.valorarHotel(valoracion);
+    await this.servicio.valorarHotel(valoracion);
     await this.getValoraciones();
     this.comentario = '';
     this.nota = 0;
@@ -91,6 +91,5 @@ export class HabitacionesComponent implements OnInit {
       };
       this.valoraciones.push(valoracion);
     }
-    console.log('valoraciones: ', this.valoraciones);
   }
 }

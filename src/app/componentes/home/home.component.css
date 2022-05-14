@@ -1,6 +1,6 @@
-img {
-  /*height: 50em;*/
+#fotoPrincipal {
   opacity: 0.85;
+  max-height: 750px;
 }
 
 #destino {

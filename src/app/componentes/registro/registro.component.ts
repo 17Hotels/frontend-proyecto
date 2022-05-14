@@ -34,7 +34,6 @@ export class RegistroComponent implements OnInit {
       this.detallesUsuario = await this.servicio
         .registro(this.usuario)
         .catch(() => {
-          console.log('ya existe el usuario con ese email');
           return null;
         });
 
